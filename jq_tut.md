@@ -40,5 +40,5 @@ jq '[.docs[]|select(.publish_year!=null and .author_name!=null)|{title,author_na
 jq '[.docs[]|select(.publish_year!=null and .author_name!=null)|{title,author_name:.author_name[],publish_year:.publish_year[]}]|[group_by(.author_name)|.[]|{name:.[0].author_name, count:.|length}]|sort_by(.count)|reverse|[limit(3;.[])]' openlibrary.json
 ### generate list of authors
 jq '[.docs[].author_name[0]]|length' openlibrary.json
-
-
+## export csv table
+jq -r '["Titel","Autor","Jahr"],(.docs[]|[.title,.author_name[0],.publish_year[0]])|@csv' openlibrary.json > book_list.csv 
