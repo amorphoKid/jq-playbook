@@ -41,3 +41,4 @@ jq '[.docs[]|select(.publish_year!=null and .author_name!=null)|{title,author_na
 ### generate list of authors
 jq '[.docs[].author_name[0]]|length' openlibrary.json
 
+
